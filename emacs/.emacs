@@ -1,13 +1,7 @@
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
 (package-initialize)
+
+;; Stuff that i have customized
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#1B2229" "#ff6c6b" "#98be65" "#ECBE7B" "#51afef" "#c678dd" "#46D9FF" "#DFDFDF"])
  '(custom-safe-themes
@@ -18,7 +12,6 @@
  '(jdee-db-requested-breakpoint-face-colors (cons "#1B2229" "#98be65"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1B2229" "#3f444a"))
  '(menu-bar-mode nil)
- '(org-agenda-files (quote ("~/Work/Journal/2017/september/16.org")))
  '(org-fontify-done-headline t)
  '(org-fontify-quote-and-verse-blocks t)
  '(org-fontify-whole-heading-line t)
@@ -50,13 +43,13 @@
     (cons 360 "#5B6268")))
  '(vc-annotate-very-old-color nil))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+
+
+;; Editing mode line properties
  '(mode-line ((t (:background "#21242b" :foreground "#bbc2cf" :box nil :overline nil :underline nil :height 1.0 :width ultra-condensed)))))
 
 
+;; Adding melpa archive
 (when (>= emacs-major-version 24)
   (require 'package)
   (add-to-list
@@ -65,6 +58,8 @@
    '("melpa" . "http://melpa.milkbox.net/packages/")
    t))
 
+
+;; Theme i use
 (require 'doom-themes)
 
 ;; Global settings (defaults)
@@ -84,17 +79,7 @@
 ;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)
 
-
-;;(doom-neotree-enable-file-icons)
-
-;;(doom-neotree-enable-folder-icons)
-
-;;(doom-neotree-enable-chevron-icons)
-
-;;(doom-neotree-file-icons)
-
-;;(doom-neotree-dir-face)
-
+;; Mode used to highlight current buffer than others
 (require 'solaire-mode)
 
 ;; brighten buffers (that represent real files)
@@ -102,40 +87,39 @@
 ;; To enable solaire-mode unconditionally for certain modes:
 (add-hook 'ediff-prepare-buffer-hook #'solaire-mode)
 
-;; ...if you use auto-revert-mode:
-
 (add-hook 'after-revert-hook #'turn-on-solaire-mode)
 
 ;; highlight the minibuffer when it is activated:
 (add-hook 'minibuffer-setup-hook #'solaire-mode-in-minibuffer)
 
-;; if the bright and dark background colors are the wrong way around, use this
-;; to switch the backgrounds of the `default` and `solaire-default-face` faces.
-;; This should be used *after* you load the active theme!
-;;
 ;; NOTE: This is necessary for themes in the doom-themes package!
 (solaire-mode-swap-bg)
 
 
 (setq solaire-mode-remap-modeline nil)
 
+
+;; powerline kindish theme for mode line
 (require 'airline-themes)
 (load-theme 'airline-doom-one)
 
-
+;; Adding line number and highlighting current line number
 (global-linum-mode t)
 (require 'hlinum)
 (hlinum-activate)
 
+;; Increasing current font size
 (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-16"))
 
+;; Fancy Icons
 (require 'all-the-icons)
 
+;; For listing file structure
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 
 ;; Making emacs start in full screen
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-;; disabling splash screen
+;; Disabling splash screen
 (setq inhibit-splash-screen t)
